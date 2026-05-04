@@ -14,7 +14,7 @@ connectDB();
 // Middleware
 
 app.use(cors({
-  origin: "https://your-frontend.vercel.app"
+  origin: "https://insights-kohl.vercel.app"
 }));
 app.use(express.json());
 

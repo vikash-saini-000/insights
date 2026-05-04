@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 
 import PersistentLoadingPage from "./pages/PersistentLoadingPage.jsx"
 import RevealContent from './pages/RevealContent.jsx';
+import AdminDashboard from './pages/AdminDashboard.jsx';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
     
         <Route path="/insights" element={<PersistentLoadingPage />} />
         <Route path='/reveal-content' element={<RevealContent></RevealContent>}></Route>
+        <Route path="/vikash" element={<AdminDashboard></AdminDashboard>}></Route>
       </Routes>
     </Router>
   );

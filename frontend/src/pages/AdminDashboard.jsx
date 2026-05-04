@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { getAllUsers } from "../api"; // Adjust path based on your file structure
+import { getAllUsers, deleteUser } from "../api/axios"; 
 
-// --- CUSTOM SVG ICONS ---
-const IconRefresh = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
+const IconTrash = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18m-2 0v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6m3 0V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
 );
 
-const IconDatabase = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
-);
+// ... keep IconRefresh and IconDatabase components
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
@@ -27,6 +24,18 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleDelete = async (id) => {
+    if (window.confirm("Purge this identity from the database?")) {
+      try {
+        await deleteUser(id);
+        // Optimistically update UI
+        setUsers(users.filter(user => user._id !== id));
+      } catch (err) {
+        alert("Purge failed. Node restricted.");
+      }
+    }
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -39,7 +48,7 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-[#FDFDFD] text-[#111] font-sans p-6 md:p-12">
       <div className="max-w-6xl mx-auto space-y-8">
         
-        {/* HEADER SECTION */}
+        {/* HEADER SECTION - Identical to your code */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-slate-100 pb-8">
           <div>
             <div className="flex items-center gap-2 mb-2">
@@ -72,13 +81,13 @@ const AdminDashboard = () => {
         {/* DATA TABLE */}
         <div className="bg-white border border-slate-100 rounded-[32px] overflow-hidden shadow-sm shadow-slate-100">
           <div className="overflow-x-auto">
-            <table className="w-full text-left">
+            <table className="w-full text-left border-collapse">
               <thead className="bg-slate-50 border-b border-slate-100">
                 <tr>
                   <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-400">Timestamp</th>
                   <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-400">Identifier</th>
                   <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-400">Key Access</th>
-                  <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-400">Node Status</th>
+                  <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-400">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
@@ -103,10 +112,13 @@ const AdminDashboard = () => {
                         </span>
                       </td>
                       <td className="px-8 py-6">
-                        <div className="flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-                          <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Verified</span>
-                        </div>
+                        <button 
+                          onClick={() => handleDelete(user._id)}
+                          className="opacity-0 group-hover:opacity-100 p-2 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
+                          title="Purge Entry"
+                        >
+                          <IconTrash />
+                        </button>
                       </td>
                     </tr>
                   ))

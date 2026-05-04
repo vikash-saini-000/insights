@@ -30,3 +30,13 @@ export const getAllUsers = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await User.findByIdAndDelete(id);
+    res.status(200).json({ message: "Node entry purged successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

@@ -57,7 +57,7 @@ const LandingPage = () => {
             onClick={() => navigate("/login")}
             className="px-6 py-2 bg-black text-white rounded hover:bg-slate-800 transition-all shadow-sm"
           >
-            Access Console
+            Start Exploring
           </button>
         </div>
       </nav>
@@ -67,17 +67,17 @@ const LandingPage = () => {
         <div className="space-y-8 animate-in fade-in duration-1000">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-100 rounded text-[10px] font-bold text-blue-600 uppercase tracking-widest">
             <IconShield />
-            Verified API Node
+            100% Private & Secure
           </div>
           
           <h1 className="text-6xl md:text-8xl font-medium tracking-tight leading-none">
-            Social data, <br /> 
-            <span className="text-slate-400 font-light">transparently.</span>
+            Your social world, <br /> 
+            <span className="text-slate-400 font-light">uncovered.</span>
           </h1>
 
           <p className="text-lg text-slate-500 max-w-xl mx-auto leading-relaxed font-medium">
-            Professional-grade analytics for the Instagram Graph. <br className="hidden md:block" />
-            Audited for privacy. Optimized for speed.
+            See your growth, discover your top moments, and understand your audience like never before. <br className="hidden md:block" />
+            Designed for everyone, built for simplicity.
           </p>
 
           <div className="pt-10 flex flex-col items-center gap-6">
@@ -85,15 +85,43 @@ const LandingPage = () => {
               onClick={() => navigate("/login")}
               className="px-12 py-5 bg-black text-white text-lg font-medium rounded-full hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-3 shadow-2xl shadow-slate-200"
             >
-              Analyze Profile
+              See Your Insights
               <IconArrowRight />
             </button>
+            <p className="text-xs text-slate-400 font-medium">Join 10,000+ creators and curious users exploring their profiles.</p>
           </div>
         </div>
       </main>
 
+      {/* VALUE PROPS FOR EVERYONE */}
+      <section className="bg-slate-50 py-24 border-y border-slate-100">
+        <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
+          <div className="space-y-4">
+            <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600">
+               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
+            </div>
+            <h3 className="font-bold text-lg">Track Your Milestone</h3>
+            <p className="text-sm text-slate-500">Ever wondered which post actually brought you the most followers? We show you the logic behind your growth.</p>
+          </div>
+          <div className="space-y-4">
+            <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600">
+               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            </div>
+            <h3 className="font-bold text-lg">Understand Trends</h3>
+            <p className="text-sm text-slate-500">Stay ahead of the curve. See what content your friends and followers are engaging with the most right now.</p>
+          </div>
+          <div className="space-y-4">
+            <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600">
+               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 className="font-bold text-lg">Pure Privacy</h3>
+            <p className="text-sm text-slate-500">We never store your data. Your analysis is ephemeral, secure, and for your eyes only.</p>
+          </div>
+        </div>
+      </section>
+
       {/* FOOTER SECTION */}
-      <footer className="bg-white border-t border-slate-100">
+      <footer className="bg-white">
         <div className="max-w-5xl mx-auto px-6 pt-20 pb-12">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
             
@@ -104,7 +132,7 @@ const LandingPage = () => {
                 <span className="text-sm font-bold tracking-tighter uppercase text-black">Insight Engine</span>
               </div>
               <p className="text-xs text-slate-400 leading-relaxed max-w-[220px]">
-                The professional standard for non-invasive social intelligence. Built on the official Graph API protocol.
+                Making social data accessible and beautiful for everyone. Built on official transparency protocols.
               </p>
               <div className="flex gap-4 grayscale opacity-50">
                 <a href="https://github.com/lucide-icons/lucide" target="_blank" rel="noreferrer" className="hover:opacity-100 transition-opacity hover:text-black">
@@ -116,24 +144,24 @@ const LandingPage = () => {
               </div>
             </div>
 
-            {/* REAL RESOURCE LINKS (REPLACED # WITH REAL URLS) */}
+            {/* REAL RESOURCE LINKS */}
             <div className="md:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-8">
-              <FooterGroup title="Infrastructure" items={[
-                { name: "Meta Graph API", url: "https://developers.facebook.com/docs/instagram-api" },
-                { name: "Privacy Standards", url: "https://safety.google/privacy/ads-and-data/" },
-                { name: "System Status", url: "https://metastatus.com/" }
+              <FooterGroup title="Resources" items={[
+                { name: "How it Works", url: "#" },
+                { name: "Growth Guide", url: "https://safety.google/privacy/ads-and-data/" },
+                { name: "Global Trends", url: "https://metastatus.com/" }
               ]} />
               
-              <FooterGroup title="Legal" items={[
-                { name: "Privacy Policy", url: "https://policies.google.com/privacy" },
-                { name: "Terms of Use", url: "https://opensource.org/licenses/MIT" },
-                { name: "Data Protection", url: "https://gdpr-info.eu/" }
+              <FooterGroup title="Safe & Sound" items={[
+                { name: "Your Privacy", url: "https://policies.google.com/privacy" },
+                { name: "User Terms", url: "https://opensource.org/licenses/MIT" },
+                { name: "Data Security", url: "https://gdpr-info.eu/" }
               ]} />
 
-              <FooterGroup title="Developer" items={[
-                { name: "Documentation", url: "https://lucide.dev/guide/" },
-                { name: "GitHub Repo", url: "https://github.com/lucide-icons/lucide" },
-                { name: "Bug Bounty", url: "https://www.hackerone.com/bug-bounty-programs" }
+              <FooterGroup title="Community" items={[
+                { name: "Help Center", url: "#" },
+                { name: "Feedback", url: "#" },
+                { name: "Creator Lab", url: "https://github.com/lucide-icons/lucide" }
               ]} />
             </div>
           </div>
@@ -149,7 +177,7 @@ const LandingPage = () => {
             <div className="flex items-center gap-6 grayscale opacity-30">
                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1280px-Meta_Platforms_Inc._logo.svg.png" className="h-2.5" alt="Meta" />
                <div className="h-3 w-px bg-slate-300" />
-               <span className="text-[9px] font-black uppercase tracking-tighter tracking-[0.1em] text-black">AES-256 Bit Security</span>
+               <span className="text-[9px] font-black uppercase tracking-tighter tracking-[0.1em] text-black">Secure Data Nodes</span>
             </div>
           </div>
         </div>

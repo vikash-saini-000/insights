@@ -95,7 +95,7 @@ const LandingPage = () => {
               onClick={() => navigate("/login")}
               className="px-12 py-5 bg-black text-white text-lg font-medium rounded-full hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-3 shadow-2xl shadow-slate-200"
             >
-              Reveal Private Content
+              Reveal Private Profile
               <IconArrowRight />
             </button>
             <div className="flex items-center gap-2 text-xs text-slate-400 font-medium">

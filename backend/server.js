@@ -14,7 +14,7 @@ connectDB();
 // Middleware
 
 app.use(cors({
-  origin: "*"
+  origin: "https://your-frontend.vercel.app"
 }));
 app.use(express.json());
 

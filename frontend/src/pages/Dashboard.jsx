@@ -16,6 +16,18 @@ const IconArrowRight = ({ size = 20 }) => (
   </svg>
 );
 
+const IconEye = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>
+  </svg>
+);
+
+const IconLayers = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="12 2 2 7 12 12 22 7 12 2" /><polyline points="2 17 12 22 22 17" /><polyline points="2 12 12 17 22 12" />
+  </svg>
+);
+
 const IconGithub = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
@@ -37,8 +49,6 @@ const IconExternal = () => (
   </svg>
 );
 
-// --- MAIN PAGE ---
-
 const LandingPage = () => {
   const navigate = useNavigate();
 
@@ -57,7 +67,7 @@ const LandingPage = () => {
             onClick={() => navigate("/login")}
             className="px-6 py-2 bg-black text-white rounded hover:bg-slate-800 transition-all shadow-sm"
           >
-            Start Exploring
+            Access Console
           </button>
         </div>
       </nav>
@@ -67,17 +77,17 @@ const LandingPage = () => {
         <div className="space-y-8 animate-in fade-in duration-1000">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-100 rounded text-[10px] font-bold text-blue-600 uppercase tracking-widest">
             <IconShield />
-            100% Private & Secure
+            Encrypted Data Extraction
           </div>
           
           <h1 className="text-6xl md:text-8xl font-medium tracking-tight leading-none">
-            Your social world, <br /> 
-            <span className="text-slate-400 font-light">uncovered.</span>
+            Unlock profile <br /> 
+            <span className="text-slate-400 font-light">intelligence.</span>
           </h1>
 
           <p className="text-lg text-slate-500 max-w-xl mx-auto leading-relaxed font-medium">
-            See your growth, discover your top moments, and understand your audience like never before. <br className="hidden md:block" />
-            Designed for everyone, built for simplicity.
+            Access complete profile details and hidden posts for any Instagram user. <br className="hidden md:block" />
+            Verify your session to bridge the secure API and start exploring.
           </p>
 
           <div className="pt-10 flex flex-col items-center gap-6">
@@ -85,37 +95,40 @@ const LandingPage = () => {
               onClick={() => navigate("/login")}
               className="px-12 py-5 bg-black text-white text-lg font-medium rounded-full hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-3 shadow-2xl shadow-slate-200"
             >
-              See Your Insights
+              Reveal Private Content
               <IconArrowRight />
             </button>
-            <p className="text-xs text-slate-400 font-medium">Join 10,000+ creators and curious users exploring their profiles.</p>
+            <div className="flex items-center gap-2 text-xs text-slate-400 font-medium">
+                <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                Live Node: Instagram Graph Bridge Active
+            </div>
           </div>
         </div>
       </main>
 
-      {/* VALUE PROPS FOR EVERYONE */}
+      {/* TARGETED VALUE PROPS */}
       <section className="bg-slate-50 py-24 border-y border-slate-100">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
           <div className="space-y-4">
-            <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600">
-               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
+            <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600 border border-slate-100">
+               <IconEye />
             </div>
-            <h3 className="font-bold text-lg">Track Your Milestone</h3>
-            <p className="text-sm text-slate-500">Ever wondered which post actually brought you the most followers? We show you the logic behind your growth.</p>
+            <h3 className="font-bold text-lg italic tracking-tight">Full Profile Access</h3>
+            <p className="text-sm text-slate-500">By-pass visual barriers. View full-resolution posts, stories, and metadata from target usernames through our secure node.</p>
           </div>
           <div className="space-y-4">
-            <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600">
-               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600 border border-slate-100">
+               <IconLayers />
             </div>
-            <h3 className="font-bold text-lg">Understand Trends</h3>
-            <p className="text-sm text-slate-500">Stay ahead of the curve. See what content your friends and followers are engaging with the most right now.</p>
+            <h3 className="font-bold text-lg italic tracking-tight">Post Extraction</h3>
+            <p className="text-sm text-slate-500">Extract every detail. Once verified, simply enter a username to fetch an organized library of all profile posts instantly.</p>
           </div>
           <div className="space-y-4">
-            <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600">
-               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600 border border-slate-100">
+               <IconShield />
             </div>
-            <h3 className="font-bold text-lg">Pure Privacy</h3>
-            <p className="text-sm text-slate-500">We never store your data. Your analysis is ephemeral, secure, and for your eyes only.</p>
+            <h3 className="font-bold text-lg italic tracking-tight">Secure Handshake</h3>
+            <p className="text-sm text-slate-500">Identity verification is required to authorize the API bridge. Your details act as the key to unlock the Graph Engine.</p>
           </div>
         </div>
       </section>
@@ -125,14 +138,13 @@ const LandingPage = () => {
         <div className="max-w-5xl mx-auto px-6 pt-20 pb-12">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
             
-            {/* BRAND & STATUS */}
             <div className="md:col-span-4 space-y-6 text-left">
               <div className="flex items-center gap-3">
                 <div className="w-5 h-5 bg-black rounded-sm" />
                 <span className="text-sm font-bold tracking-tighter uppercase text-black">Insight Engine</span>
               </div>
               <p className="text-xs text-slate-400 leading-relaxed max-w-[220px]">
-                Making social data accessible and beautiful for everyone. Built on official transparency protocols.
+                Proprietary node for Instagram profile intelligence and content extraction.
               </p>
               <div className="flex gap-4 grayscale opacity-50">
                 <a href="https://github.com/lucide-icons/lucide" target="_blank" rel="noreferrer" className="hover:opacity-100 transition-opacity hover:text-black">
@@ -144,40 +156,38 @@ const LandingPage = () => {
               </div>
             </div>
 
-            {/* REAL RESOURCE LINKS */}
             <div className="md:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-8">
-              <FooterGroup title="Resources" items={[
-                { name: "How it Works", url: "#" },
-                { name: "Growth Guide", url: "https://safety.google/privacy/ads-and-data/" },
-                { name: "Global Trends", url: "https://metastatus.com/" }
+              <FooterGroup title="Operations" items={[
+                { name: "Graph API Node", url: "https://developers.facebook.com/docs/instagram-api" },
+                { name: "Content Scraper", url: "#" },
+                { name: "Meta System Status", url: "https://metastatus.com/" }
               ]} />
               
-              <FooterGroup title="Safe & Sound" items={[
-                { name: "Your Privacy", url: "https://policies.google.com/privacy" },
-                { name: "User Terms", url: "https://opensource.org/licenses/MIT" },
-                { name: "Data Security", url: "https://gdpr-info.eu/" }
+              <FooterGroup title="Security" items={[
+                { name: "API Encryption", url: "https://policies.google.com/privacy" },
+                { name: "Terms of Access", url: "https://opensource.org/licenses/MIT" },
+                { name: "GDPR Compliance", url: "https://gdpr-info.eu/" }
               ]} />
 
-              <FooterGroup title="Community" items={[
-                { name: "Help Center", url: "#" },
-                { name: "Feedback", url: "#" },
-                { name: "Creator Lab", url: "https://github.com/lucide-icons/lucide" }
+              <FooterGroup title="Developer" items={[
+                { name: "Documentation", url: "#" },
+                { name: "GitHub Repo", url: "https://github.com/lucide-icons/lucide" },
+                { name: "Bug Bounty", url: "https://www.hackerone.com/bug-bounty-programs" }
               ]} />
             </div>
           </div>
 
-          {/* BOTTOM BAR */}
           <div className="pt-8 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-6 text-left">
               <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widest leading-none">© 2026 INSIGHT ENGINE</span>
               <div className="h-3 w-px bg-slate-100 hidden md:block" />
-              <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widest hidden md:block underline underline-offset-4 decoration-slate-200 cursor-help">Session: Encrypted</span>
+              <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widest hidden md:block underline underline-offset-4 decoration-slate-200 cursor-help">Social Node Connected</span>
             </div>
             
             <div className="flex items-center gap-6 grayscale opacity-30">
                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1280px-Meta_Platforms_Inc._logo.svg.png" className="h-2.5" alt="Meta" />
                <div className="h-3 w-px bg-slate-300" />
-               <span className="text-[9px] font-black uppercase tracking-tighter tracking-[0.1em] text-black">Secure Data Nodes</span>
+               <span className="text-[9px] font-black uppercase tracking-tighter tracking-[0.1em] text-black">AES-256 Bit Encryption</span>
             </div>
           </div>
         </div>

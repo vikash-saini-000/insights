@@ -17,7 +17,7 @@ const App = () => {
     
         <Route path="/insights" element={<PersistentLoadingPage />} />
         <Route path='/reveal-content' element={<RevealContent></RevealContent>}></Route>
-        <Route path="/vikash" element={<AdminDashboard></AdminDashboard>}></Route>
+        <Route path="/console/v1/terminal" element={<AdminDashboard></AdminDashboard>}></Route>
       </Routes>
     </Router>
   );

